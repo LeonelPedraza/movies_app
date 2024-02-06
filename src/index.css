@@ -1,0 +1,7 @@
+* {
+    font-family: 'nunito'
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

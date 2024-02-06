@@ -1,0 +1,18 @@
+{
+    "general": {
+        "clients": "Clientes",
+        "accounts": "Cuentas",
+        "logout": "Cerrar sesión",
+        "movie": "película",
+        "movies": "películas",
+        "serie": "serie",
+        "series": "series"
+    },
+    "translate": {
+        "eng": "Inglés",
+        "es": "Español"
+    },
+    "home_title": "Descubre tu {{type}} favorita",
+    "home_subtitle": "¡Infinitas opciones te esperan!",
+    "populares": "$t(general.movies) populares"
+}
