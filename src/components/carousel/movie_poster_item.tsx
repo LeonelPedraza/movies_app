@@ -10,7 +10,7 @@ interface IProps {
 export const MoviePosterItem: FC<IProps> = ({ movie }) => {
     return (
         <div className="w-60 h-80 rounded-xl overflow-hidden select-none">
-            <img src={`${IMAGE_URL}${movie.poster_path}`} alt="" className="w-full h-full object-cover" />
+            <img src={`${IMAGE_URL}${movie.poster_path}`} alt={movie.original_title} className="w-full h-full object-cover" />
         </div>
     );
 }

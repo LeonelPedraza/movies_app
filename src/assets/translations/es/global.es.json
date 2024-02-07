@@ -14,5 +14,7 @@
     },
     "home_title": "Descubre tu {{type}} favorita",
     "home_subtitle": "¡Infinitas opciones te esperan!",
-    "populares": "$t(general.movies) populares"
+    "populares": "$t(general.movies) populares",
+    "top-rated": "mejores valoradas",
+    "upcoming": "Próximos estrenos"
 }

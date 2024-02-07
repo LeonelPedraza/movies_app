@@ -44,8 +44,6 @@ export const HomeSlider: FC<IPops> = ({ popularesMovies }) => {
                 effect={'fade'}
                 modules={[EffectFade, Autoplay]}
                 autoplay={{ delay: 10000, disableOnInteraction: false, }}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 className='hidden md:flex w-full h-full'
             >
                 {

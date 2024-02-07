@@ -14,5 +14,9 @@
     },
     "home_title": "Discover your favorite {{type}}",
     "home_subtitle": "Endless choices await!",
-    "populares": "populares $t(general.movies)"
+    "movies": {
+        "populares": "populares $t(general.movies)",
+        "top-rated": "top rated $t(general.movies)",
+        "upcoming": "upcoming $t(general.movies)"
+    }
 }

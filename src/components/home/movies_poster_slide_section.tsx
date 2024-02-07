@@ -19,7 +19,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                         <Swiper
                             modules={[Virtual, Navigation]}
                             slidesPerView={1}
-                            spaceBetween={0}
+                            spaceBetween={-100}
                             navigation={true}
                             virtual
                             breakpoints={{
@@ -48,7 +48,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                                     spaceBetween: 0,
                                 },
                             }}
-                            className='px-8 md:px-20'
+                            className='px-8 md:px-20 relative'
                         >
                             {
                                 movies?.map(item => (
