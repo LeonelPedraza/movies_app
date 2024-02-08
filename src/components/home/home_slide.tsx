@@ -27,7 +27,7 @@ export const HomeSlider: FC<IPops> = ({ popularesMovies }) => {
       })
 
     return (
-        <>
+        <div className="w-screen h-screen flex items-center justify-center">
             <div className='z-30 absolute top-0 left-0 w-full h-screen bg-black opacity-40'></div>
             <div className='z-30 absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-transparent to-slate-900 dark:to-neutral-900'>
                 <div className='w-full h-screen flex flex-col justify-center items-center gap-4 md:gap-6 text-center'>
@@ -74,6 +74,6 @@ export const HomeSlider: FC<IPops> = ({ popularesMovies }) => {
                 }
             </Swiper>
 
-        </>
+        </div>
     );
 }

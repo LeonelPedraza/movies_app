@@ -45,7 +45,7 @@ const AppBar: FC = () => {
     return (
         <div className="absolute w-full top-0 flex justify-between items-center px-4 md:px-16 py-2 md:py-4 z-50">
             <div className="text-2xl md:text-3xl font-bold">
-                LOGO
+                <Link to={'/'}>LOGO</Link>
             </div>
             <div className="flex items-center md:gap-2">
                 <div className="flex items-center md:gap-2">

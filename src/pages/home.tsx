@@ -1,9 +1,7 @@
 import { HomeSlider } from "../components/home/home_slide";
 import { usePopularesMovies, useTopRatedMovies, useUpcomingMovies } from "../hooks/useMovies";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/virtual';
+// import 'swiper/css/virtual';
 import { MoviesPosterSlideSection } from "../components/home/movies_poster_slide_section";
 import { useTranslation } from "react-i18next";
 
@@ -16,9 +14,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="w-screen h-screen flex items-center justify-center">
-                <HomeSlider popularesMovies={popularesMovies} />
-            </div>
+            <HomeSlider popularesMovies={popularesMovies} />
             <div className="flex flex-col py-16 gap-20">
                 <MoviesPosterSlideSection title={translation('movies.populares')} movies={popularesMovies} />
                 <MoviesPosterSlideSection title={translation('movies.top-rated')} movies={topRatedMovies} />

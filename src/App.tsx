@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./pages/home"
 import { Template } from "./components/template"
+import { Movies } from "./pages/movies/movies"
 
 function App() {
 
@@ -9,7 +10,12 @@ function App() {
       <Routes>
         <Route index path="/" element={
           <Template>
-            <Home/>
+            <Home />
+          </Template>
+        } />
+        <Route index path="/movies" element={
+          <Template>
+            <Movies />
           </Template>
         } />
       </Routes>

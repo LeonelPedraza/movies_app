@@ -17,4 +17,6 @@ const langauges: ILangauges[] = [
     }
 ]
 
+export const system_language = localStorage.getItem('lng') !== null ? localStorage.getItem('lng') : 'us-US'
+
 export default langauges
