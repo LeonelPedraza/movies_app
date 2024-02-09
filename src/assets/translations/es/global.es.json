@@ -1,7 +1,6 @@
 {
     "general": {
-        "clients": "Clientes",
-        "accounts": "Cuentas",
+        "home": "inicio",
         "logout": "Cerrar sesión",
         "movie": "película",
         "movies": "películas",

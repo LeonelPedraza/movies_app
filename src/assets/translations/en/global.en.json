@@ -1,8 +1,7 @@
 {
     "general": {
-        "clients": "Clients",
-        "accounts": "Accounts",
-        "logout": "Logout",
+        "home": "home",
+        "logout": "sign out",
         "movie": "movie",
         "movies": "movies",
         "serie": "serie",

@@ -1,5 +1,5 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { getPopularesMovies, getTopRated, getUpcoming } from '../services/movies/movies'
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { getMovieDetails, getMovieImages, getPopularesMovies, getTopRated, getUpcoming } from '../services/movies/movies'
 
 export const usePopularesMovies = () => {
     const { isLoading, isError, error, data, fetchNextPage } = useInfiniteQuery({
@@ -50,4 +50,26 @@ export const useUpcomingMovies = () => {
     }
 }
 
+export const useMovieDetails = ({id}: {id: number}) => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['movie_details', id],
+        queryFn: () => getMovieDetails({id}),
+    })
+    return {
+        isLoading,
+        isError,
+        movie_details: data
+    }
+}
 
+export const useMoviewImages = ({id}: {id: number}) => {
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['movie_images', id],
+        queryFn: () => getMovieImages({id})
+    })
+    return {
+        isLoading,
+        isError,
+        movie_images: data
+    }
+}

@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Movie } from "../../hooks/types/types";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { CiStar } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL
 
@@ -11,8 +12,19 @@ interface IProps {
 }
 
 export const MoviePosterItem: FC<IProps> = ({ movie }) => {
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate(`/movie/${movie.original_title.toLowerCase().replace(' ', '-')}`, {
+            state: {
+                id: movie.id
+            }
+        })
+    }
+
     return (
-        <div className="relative w-60 h-80 m-0 rounded-xl overflow-hidden select-none bg-neutral-800">
+        <div onClick={handleClick} className="relative w-60 h-80 m-0 rounded-xl overflow-hidden select-none bg-neutral-800">
             <div className="w-full h-full flex items-center justify-center">
                 <AiOutlineLoading3Quarters className="text-3xl text-white font-bold animate-spin" />
             </div>

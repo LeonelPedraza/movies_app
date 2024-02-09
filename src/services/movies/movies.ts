@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Movie } from "../../hooks/types/types"
+import { Images, Movie } from "../../hooks/types/types"
 import { system_language } from "../../config/languages"
 
 const API_KEY = import.meta.env.VITE_API_KEY
@@ -52,4 +52,14 @@ export const getUpcoming = ({ pageParam = 1 }: { pageParam?: number }): Promise<
             nextCursor
         }
     })
-} 
+}
+
+export const getMovieDetails = ({ id }: { id: number }): Promise<Movie> => {
+    return axios.get(`${API_URL}/movie/${id}?append_to_response=credits,videos,reviews,similar&language=${system_language}`, { headers })
+    .then((res) => res.data)
+}
+
+export const getMovieImages = ({ id }: { id: number }): Promise<Images> => {
+    return axios.get(`${API_URL}/movie/${id}/images`, { headers })
+    .then((res) => res.data)
+}

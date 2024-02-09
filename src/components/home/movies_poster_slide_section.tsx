@@ -73,7 +73,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                 >
                     {
                         movies?.map(item => (
-                            <SwiperSlide key={item.id} className='overflow-visible hover:scale-125 hover:z-50 z-30 transition ease-linear cursor-pointer' >
+                            <SwiperSlide key={item.id} className='overflow-visible hover:scale-125 hover:z-40 z-30 transition ease-linear cursor-pointer' >
                                 <MoviePosterItem movie={item} />
                             </SwiperSlide>
                         ))
@@ -82,12 +82,12 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                 <div className='absolute flex justify-between w-full h-full top-0 left-0'>
                     <div
                         onClick={handlePrev}
-                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-50 backdrop-blur-sm cursor-pointer'>
+                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
                         <MdArrowBackIos className="text-xl md:text-2xl " />
                     </div>
                     <div
                         onClick={handleNext}
-                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-50 backdrop-blur-sm cursor-pointer'>
+                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
                         <MdArrowForwardIos className="text-xl md:text-2xl " />
                     </div>
                 </div>
