@@ -1,4 +1,4 @@
-import { ImagesSlider } from "../components/home/home_slide";
+import { ImagesSlider } from "../components/home/images_slide";
 import { useTranslation } from "react-i18next";
 import { useTypewriter } from 'react-simple-typewriter'
 

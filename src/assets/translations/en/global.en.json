@@ -17,6 +17,7 @@
     "movies": {
         "populares": "populares $t(general.movies)",
         "top-rated": "top rated $t(general.movies)",
-        "upcoming": "upcoming $t(general.movies)"
+        "upcoming": "upcoming $t(general.movies)",
+        "total-votes": "{{votes}} total votes"
     }
 }

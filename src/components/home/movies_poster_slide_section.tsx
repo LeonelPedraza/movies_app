@@ -74,7 +74,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                     {
                         movies?.map(item => (
                             <SwiperSlide key={item.id} className='overflow-visible hover:scale-125 hover:z-40 z-30 transition ease-linear cursor-pointer' >
-                                <MoviePosterItem movie={item} />
+                                <MoviePosterItem movie={item} className='w-60 h-80'/>
                             </SwiperSlide>
                         ))
                     }

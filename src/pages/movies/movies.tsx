@@ -9,11 +9,11 @@ export const Movies = () => {
 
     return (
         <div className="px-4 md:px-16 py-20">
-            <div className="grid sm:grid-cols-2 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 items-center justify-center gap-4 md:gap-8">
+            <div className="grid sm:grid-cols-2 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-16 items-center justify-center gap-4 md:gap-8">
                 {
                     popularesMovies?.map(item => (
                         <div className="relative w-full h-full overflow-hidden flex items-center justify-center hover:scale-110 hover:z-40 transition ease-linear cursor-pointer">
-                            <MoviePosterItem movie={item}/>
+                            <MoviePosterItem movie={item} className="w-60 h-80"/>
                         </div>
                     ))
                 }

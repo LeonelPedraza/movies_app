@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
 
-import { HomeCarouseItemImage } from '../carousel/home_carouse_Item';
+import { ItemImage } from '../carousel/Item_image';
 
 interface IPops {
     landscape_paths: string[] | undefined
@@ -15,25 +15,27 @@ interface IPops {
 
 export const ImagesSlider: FC<IPops> = ({ landscape_paths, portrait_paths, delay }) => {
 
-    
-
     return (
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className='z-30 absolute top-0 left-0 w-full h-screen bg-black opacity-40'></div>
+            <div className='z-30 absolute top-0 left-0 w-full h-screen bg-black opacity-45'></div>
             <Swiper
                 spaceBetween={0}
                 slidesPerView={1}
                 effect={'fade'}
+                lazyPreloadPrevNext={3}
+                // lazyPreloaderClass='swiper-lazy-preloader-white'
                 modules={[EffectFade, Autoplay]}
                 autoplay={{ delay, disableOnInteraction: false, }}
                 className='hidden md:flex w-full h-full'
             >
                 {
-                    landscape_paths?.map(item => (
+                    landscape_paths?.map(item => {
+                        console.log(item)
+                        return (
                         <SwiperSlide key={item}>
-                            <HomeCarouseItemImage path={`${item}`} />
+                            <ItemImage path={`${item}`} />
                         </SwiperSlide>
-                    ))
+                    )})
                 }
             </Swiper>
             {/* Movile carousel */}
@@ -42,15 +44,14 @@ export const ImagesSlider: FC<IPops> = ({ landscape_paths, portrait_paths, delay
                 slidesPerView={1}
                 effect={'fade'}
                 modules={[EffectFade, Autoplay]}
+                lazyPreloadPrevNext={2}
                 autoplay={{ delay: 10000, disableOnInteraction: false, }}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 className='md:hidden w-full h-full'
             >
                 {
                     portrait_paths?.map(item => (
                         <SwiperSlide key={item}>
-                            <HomeCarouseItemImage path={`${item}`} />
+                            <ItemImage path={`${item}`} />
                         </SwiperSlide>
                     ))
                 }

@@ -6,7 +6,8 @@ export const usePopularesMovies = () => {
         queryKey: ['populares'],
         queryFn: getPopularesMovies,
         initialPageParam: 1,
-        getNextPageParam: (lastPage) => lastPage.nextCursor
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        staleTime: Infinity
     })
 
     return {
@@ -23,7 +24,8 @@ export const useTopRatedMovies = () => {
         queryKey: ['top_rated'],
         queryFn: getTopRated,
         initialPageParam: 1,
-        getNextPageParam: (lastPage) => lastPage.nextCursor
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        staleTime: Infinity
     })
 
     return {
@@ -39,7 +41,8 @@ export const useUpcomingMovies = () => {
         queryKey: ['upcoming'],
         queryFn: getUpcoming,
         initialPageParam: 1,
-        getNextPageParam: (lastPage) => lastPage.nextCursor
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        staleTime: Infinity
     })
 
     return {
@@ -54,6 +57,7 @@ export const useMovieDetails = ({id}: {id: number}) => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['movie_details', id],
         queryFn: () => getMovieDetails({id}),
+        staleTime: Infinity
     })
     return {
         isLoading,
@@ -65,7 +69,8 @@ export const useMovieDetails = ({id}: {id: number}) => {
 export const useMoviewImages = ({id}: {id: number}) => {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['movie_images', id],
-        queryFn: () => getMovieImages({id})
+        queryFn: () => getMovieImages({id}),
+        staleTime: Infinity
     })
     return {
         isLoading,
