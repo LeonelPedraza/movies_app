@@ -1,7 +1,0 @@
-::view-transition-new(root){
-    animation-duration: 3s;
-}
-
-::view-transition-old(root) {
-    animation-duration: 3s;
-}
