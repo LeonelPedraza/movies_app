@@ -33,13 +33,13 @@ export const MoviePosterItem: FC<IProps> = ({ movie, show_rating = true, classNa
             <img 
                 src={`${IMAGE_URL}${movie?.poster_path}`} 
                 alt={movie?.original_title} 
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="absolute top-0 left-0 w-full h-full object-cover border-0"
                 style={{viewTransitionName: `movie-${movie?.id}`}}
             />
             {
                 show_rating &&
-                <div className="absolute flex items-center gap-2 top-0 left-0 bg-gray-600 opacity-85 text-white px-2 py-2 text-sm rounded-br-lg">
-                    <CiStar className="text-md"/>
+                <div className="absolute flex items-center gap-2 top-0 left-0 bg-gray-600 opacity-85 text-white px-1.5 md:px-2 py-1.5 md:py-2 rounded-br-lg text-xs md:text-md">
+                    <CiStar/>
                     <span>{movie?.vote_average.toFixed(2)}</span>
                 </div>
             }

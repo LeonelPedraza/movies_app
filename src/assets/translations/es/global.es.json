@@ -18,6 +18,6 @@
         "populares": "$t(general.movies) populares",
         "top-rated": "mejores valoradas",
         "upcoming": "Próximos estrenos",
-        "total-votes": "{{votes}} votos totales"
+        "total-votes": "{{votes}} votos"
     }
 }

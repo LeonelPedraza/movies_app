@@ -45,36 +45,32 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                     lazyPreloadPrevNext={3}
                     breakpoints={{
                         360: {
-                            slidesPerView: 1.1,
+                            slidesPerView: 2.1,
                             spaceBetween: 0,
                         },
                         640: {
-                            slidesPerView: 2.2,
-                            spaceBetween: 0,
-                        },
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 0,
-                        },
-                        1024: {
                             slidesPerView: 4,
                             spaceBetween: 0,
                         },
-                        1280: {
-                            slidesPerView: 4.5,
+                        768: {
+                            slidesPerView: 4,
                             spaceBetween: 0,
                         },
-                        1536: {
+                        1024: {
+                            slidesPerView: 3.5,
+                            spaceBetween: 0,
+                        },
+                        1280: {
                             slidesPerView: 5,
                             spaceBetween: 0,
-                        },
+                        }
                     }}
-                    className='ml-2 px-10 md:px-20 py-16'
+                    className='mc:ml-2 px-10 md:px-20 py-4 md:py-16'
                 >
                     {
                         movies?.map(item => (
                             <SwiperSlide key={item.id} className='overflow-visible hover:scale-125 hover:z-40 z-30 transition ease-linear cursor-pointer' >
-                                <MoviePosterItem movie={item} className='w-60 h-80'/>
+                                <MoviePosterItem movie={item} className='w-32 h-44 lg:w-60 lg:h-80'/>
                             </SwiperSlide>
                         ))
                     }
@@ -82,13 +78,13 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                 <div className='absolute flex justify-between w-full h-full top-0 left-0'>
                     <div
                         onClick={handlePrev}
-                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
-                        <MdArrowBackIos className="text-xl md:text-2xl " />
+                        className='relative flex items-center justify-center px-1.5 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
+                        <MdArrowBackIos className="text-lg md:text-2xl " />
                     </div>
                     <div
                         onClick={handleNext}
-                        className='relative flex items-center justify-center px-2 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
-                        <MdArrowForwardIos className="text-xl md:text-2xl " />
+                        className='relative flex items-center justify-center px-1 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
+                        <MdArrowForwardIos className="text-lg md:text-2xl " />
                     </div>
                 </div>
             </div>

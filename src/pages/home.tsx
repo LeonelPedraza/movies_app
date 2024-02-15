@@ -28,7 +28,7 @@ const Home = () => {
                     portrait_paths={popularesMovies?.map(item => item.poster_path)}
                     delay={10000}
                 />
-                <div className='z-30 absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-transparent to-slate-900 dark:to-neutral-900'>
+                <div className='z-30 absolute top-0 left-0 w-full h-screen'>
                     <div className='w-full h-screen flex flex-col justify-center items-center gap-4 md:gap-6 text-center'>
                         <h1 className='text-4xl md:text-6xl font-bold'>
                             {translation('home_title', { type: text })}
