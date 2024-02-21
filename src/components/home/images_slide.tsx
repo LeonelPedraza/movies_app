@@ -16,7 +16,7 @@ interface IPops {
 export const ImagesSlider: FC<IPops> = ({ landscape_paths, portrait_paths, delay }) => {
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-black opacity-45">
+        <div className="w-screen h-screen flex items-center justify-center bg-black opacity-85">
             <div className='z-30 absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-transparent to-slate-900 dark:to-neutral-900'></div>
             <Swiper
                 spaceBetween={0}

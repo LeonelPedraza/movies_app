@@ -13,6 +13,14 @@ export const MovieDetails = () => {
     const { movie_details, isLoading } = useMovieDetails({ id: location.state.id })
     const { movie_images, isLoading: images_loading } = useMoviewImages({ id: location.state.id })
 
+    const convertRuntime = (runtimeMinutes: number | undefined) => {
+        if (runtimeMinutes != undefined) {
+            const hours = Math.floor(runtimeMinutes / 60); // Obtener las horas
+            const minutes = runtimeMinutes % 60; // Obtener los minutos restantes
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        }
+    }
+
     return (
         <div className="relative tracking-wide">
             {
@@ -83,7 +91,7 @@ export const MovieDetails = () => {
                 <div className="col-span-1 flex flex-col px-6 py-4 gap-2 bg-slate-800 dark:bg-zinc-800 rounded-lg">
                     <p className="text-xl text-neutral-400">Details</p>
                     <div>
-                        <p className="font-semibold text-lg">Status: <span className="font-normal">{movie_details?.status}</span></p>
+                        <p className="font-semibold text-lg">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}</span></p>
                     </div>
                 </div>
                 <div className="col-span-1 row-span-2 bg-zinc-800 rounded-lg p-4">3</div>
