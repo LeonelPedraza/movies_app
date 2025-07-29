@@ -1,7 +1,7 @@
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { MoviePosterItem } from '../carousel/movie_poster_item';
-import { Movie } from '../../hooks/types/types';
+import { Movie, SimilarResult } from '../../hooks/types/types';
 import { FC, useRef } from 'react';
 
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 interface IProps {
     title: string,
-    movies: Movie[] | undefined
+    movies: Movie[] | SimilarResult[] | undefined
 }
 
 export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
@@ -69,7 +69,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                 >
                     {
                         movies?.map(item => (
-                            <SwiperSlide key={item.id} className='overflow-visible hover:scale-125 hover:z-40 z-30 transition ease-linear cursor-pointer' >
+                            <SwiperSlide key={item.id} className='overflow-visible hover:scale-110 hover:z-40 z-30 transition ease-linear cursor-pointer' >
                                 <MoviePosterItem movie={item} className='w-32 h-44 lg:w-60 lg:h-80'/>
                             </SwiperSlide>
                         ))

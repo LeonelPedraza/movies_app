@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Movie } from "../../hooks/types/types";
+import { Movie, SimilarResult } from "../../hooks/types/types";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { CiStar } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL
 
 interface IProps {
-    movie: Movie | undefined,
+    movie: Movie | SimilarResult | undefined,
     className?: string | undefined
     show_rating?: boolean
 }
