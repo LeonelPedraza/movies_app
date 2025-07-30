@@ -30,7 +30,6 @@ export const ImagesSlider: FC<IPops> = ({ landscape_paths, portrait_paths, delay
             >
                 {
                     landscape_paths?.map(item => {
-                        console.log(item)
                         return (
                         <SwiperSlide key={item}>
                             <ItemImage path={`${item}`} />

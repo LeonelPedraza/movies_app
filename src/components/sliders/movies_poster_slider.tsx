@@ -17,7 +17,7 @@ interface IProps {
     movies: Movie[] | SimilarResult[] | undefined
 }
 
-export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
+export const MoviesPosterSlider: FC<IProps> = ({ title, movies }) => {
 
     const slideRef = useRef<SwiperRef>(null)
     const { t: translations } = useTranslation()
@@ -65,7 +65,7 @@ export const MoviesPosterSlideSection: FC<IProps> = ({ title, movies }) => {
                             spaceBetween: 0,
                         }
                     }}
-                    className='mc:ml-2 px-10 md:px-20 py-4 md:py-16'
+                    className='mc:ml-2 px-10 md:px-20 py-4 md:py-8'
                 >
                     {
                         movies?.map(item => (

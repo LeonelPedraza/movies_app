@@ -18,7 +18,7 @@ export const MoviePosterItem: FC<IProps> = ({ movie, show_rating = true, classNa
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate(`/movie/${movie?.original_title.toLowerCase().replace(' ', '-')}`, {
+        navigate(`/movie/${movie?.title.toLowerCase().replace(' ', '-')}`, {
             state: {
                 id: movie?.id
             }
@@ -40,7 +40,7 @@ export const MoviePosterItem: FC<IProps> = ({ movie, show_rating = true, classNa
                 show_rating &&
                 <div className="absolute flex items-center gap-2 top-0 left-0 bg-gray-600 opacity-85 text-white px-1.5 md:px-2 py-1.5 md:py-2 rounded-br-lg text-xs md:text-md">
                     <CiStar/>
-                    <span>{movie?.vote_average.toFixed(2)}</span>
+                    <span>{movie?.vote_average.toFixed(1)}</span>
                 </div>
             }
         </div>

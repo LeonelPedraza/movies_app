@@ -1,9 +1,17 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { getMovieDetails, getMovieImages, getPopularesMovies, getTopRated, getUpcoming } from '../services/movies/movies'
 
+export const MOVIES_QUERY_KEYS = {
+    POPULARES: 'POPULARES',
+    TOP_RATED: 'TOP_RATED',
+    UPCOMING: 'UPCOMING',
+    DETAILS: 'DETAILS',
+    IMAGES: 'IMAGES'
+}
+
 export const usePopularesMovies = () => {
     const { isLoading, isError, error, data, fetchNextPage } = useInfiniteQuery({
-        queryKey: ['populares'],
+        queryKey: [MOVIES_QUERY_KEYS.POPULARES],
         queryFn: getPopularesMovies,
         initialPageParam: 1,
         getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -21,7 +29,7 @@ export const usePopularesMovies = () => {
 
 export const useTopRatedMovies = () => {
     const { isLoading, isError, error, data } = useInfiniteQuery({
-        queryKey: ['top_rated'],
+        queryKey: [MOVIES_QUERY_KEYS.TOP_RATED],
         queryFn: getTopRated,
         initialPageParam: 1,
         getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -38,7 +46,7 @@ export const useTopRatedMovies = () => {
 
 export const useUpcomingMovies = () => {
     const { isLoading, isError, error, data } = useInfiniteQuery({
-        queryKey: ['upcoming'],
+        queryKey: [MOVIES_QUERY_KEYS.UPCOMING],
         queryFn: getUpcoming,
         initialPageParam: 1,
         getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -55,7 +63,7 @@ export const useUpcomingMovies = () => {
 
 export const useMovieDetails = ({id}: {id: number}) => {
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['movie_details', id],
+        queryKey: [MOVIES_QUERY_KEYS.DETAILS, id],
         queryFn: () => getMovieDetails({id}),
         staleTime: Infinity
     })
@@ -68,7 +76,7 @@ export const useMovieDetails = ({id}: {id: number}) => {
 
 export const useMoviewImages = ({id}: {id: number}) => {
     const { data, isLoading, isError } = useQuery({
-        queryKey: ['movie_images', id],
+        queryKey: [MOVIES_QUERY_KEYS.IMAGES, id],
         queryFn: () => getMovieImages({id}),
         staleTime: Infinity
     })

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useTypewriter } from 'react-simple-typewriter'
 
 import { usePopularesMovies, useTopRatedMovies, useUpcomingMovies } from "../hooks/useMovies";
-import { MoviesPosterSlideSection } from "../components/home/movies_poster_slide_section";
+import { MoviesPosterSlider } from "../components/sliders/movies_poster_slider";
 
 const Home = () => {
 
@@ -39,9 +39,9 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex flex-col py-16 gap-8">
-                <MoviesPosterSlideSection title={translation('movies.populares')} movies={popularesMovies} />
-                <MoviesPosterSlideSection title={translation('movies.top-rated')} movies={topRatedMovies} />
-                <MoviesPosterSlideSection title={translation('movies.upcoming')} movies={upcomingMovies} />
+                <MoviesPosterSlider title={translation('movies.populares')} movies={popularesMovies} />
+                <MoviesPosterSlider title={translation('movies.top-rated')} movies={topRatedMovies} />
+                <MoviesPosterSlider title={translation('movies.upcoming')} movies={upcomingMovies} />
             </div>
         </>
     );

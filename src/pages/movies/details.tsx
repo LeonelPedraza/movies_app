@@ -3,13 +3,14 @@ import { useMovieDetails, useMoviewImages } from "../../hooks/useMovies";
 import { ImagesSlider } from "../../components/home/images_slide";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MoviePosterItem } from "../../components/carousel/movie_poster_item";
-import { useTranslation } from "react-i18next";
-import { MoviesPosterSlideSection } from "../../components/home/movies_poster_slide_section";
+import { MoviesPosterSlider } from "../../components/sliders/movies_poster_slider";
+import { CastPosterSlider } from "../../components/sliders/cast_slider";
+import { CrewPosterSlider } from "../../components/sliders/crew_slider";
+import { ReviewSlider } from "../../components/sliders/review_slider";
 
 export const MovieDetails = () => {
 
     const location = useLocation()
-    const { t: translations } = useTranslation()
 
     const { movie_details, isLoading } = useMovieDetails({ id: location.state.id })
     const { movie_images, isLoading: images_loading } = useMoviewImages({ id: location.state.id })
@@ -26,8 +27,8 @@ export const MovieDetails = () => {
         <div className="relative tracking-wide">
             {
                 images_loading ?
-                    <div className="w-full h-screen flex items-center justify-center">
-                        <AiOutlineLoading3Quarters className="text-3xl text-white font-bold animate-spin" />
+                    <div className="flex items-center justify-center w-full h-screen">
+                        <AiOutlineLoading3Quarters className="text-3xl font-bold text-white animate-spin" />
                     </div>
                     :
                     <ImagesSlider
@@ -36,27 +37,27 @@ export const MovieDetails = () => {
                         delay={6000}
                     />
             }
-            <div className="md:absolute flex top-0 w-screen md:h-screen z-40 px-4 md:px-20 py-4 md:py-28">
-                <div className="flex flex-col md:flex-row items-center justify-start gap-2 md:gap-8 md:mt-auto">
-                    <MoviePosterItem movie={movie_details} className="hidden md:flex w-56 h-80" show_rating={false} />
+            <div className="top-0 z-40 flex w-screen px-4 py-4 md:absolute md:h-screen md:px-20 md:py-28">
+                <div className="flex flex-col items-center justify-start gap-2 md:flex-row md:gap-8 md:mt-auto">
+                    <MoviePosterItem movie={movie_details} className="hidden w-56 md:flex h-80" show_rating={false} />
                     {
                         !isLoading &&
-                        <div className="h-full flex flex-col gap-2 md:gap-4 text-white">
-                            <div className="border-2 border-white max-w-min px-2 md:px-4 py-1 md:py-2 rounded-lg">
-                                <p className="text-lg md:text-2xl font-bold">{movie_details?.vote_average.toFixed(1)}</p>
+                        <div className="flex flex-col h-full gap-2 text-white md:gap-4">
+                            <div className="px-2 py-1 border-2 border-white rounded-lg max-w-min md:px-4 md:py-2">
+                                <p className="text-lg font-bold md:text-2xl">{movie_details?.vote_average.toFixed(1)}</p>
                             </div>
                             {/* <p>{movie_details?.popularity}</p> */}
                             <div className="flex flex-col gap-2 my-2 md:my-0">
-                                <p className="text-5xl md:text-6xl font-bold">{movie_details?.original_title}</p>
-                                <p className="text-2xl md:text-4xl font-semibold">{movie_details?.tagline}</p>
+                                <p className="text-5xl font-bold md:text-6xl">{movie_details?.title}</p>
+                                <p className="text-2xl font-semibold md:text-4xl">{movie_details?.tagline}</p>
                             </div>
                             {
                                 movie_details?.adult &&
-                                <p className="text-lg md:text-xl font-semibold">Adult</p>
+                                <p className="text-lg font-semibold md:text-xl">Adult</p>
                             }
-                            <p className="text-lg md:text-xl font-semibold">Release date: {movie_details?.release_date.split('-')[0]}</p>
-                            <div className="flex flex-col md:flex-row items-start gap-2">
-                                <h6 className="text-lg md:text-xl font-semibold mr-2">Languages:</h6>
+                            <p className="text-lg font-semibold md:text-xl">Release date: {movie_details?.release_date.split('-')[0]}</p>
+                            <div className="flex flex-col items-start gap-2 md:flex-row">
+                                <h6 className="mr-2 text-lg font-semibold md:text-xl">Languages:</h6>
                                 <div className="flex gap-2">
                                     {
                                         movie_details?.spoken_languages.map(item => (
@@ -67,9 +68,9 @@ export const MovieDetails = () => {
                                     }
                                 </div>
                             </div>
-                            <div className="flex flex-col md:flex-row items-start gap-2">
-                                <p className="text-lg md:text-xl font-semibold mr-2">Genres:</p>
-                                <div className="flex gap-2 flex-wrap">
+                            <div className="flex flex-col items-start gap-2 md:flex-row">
+                                <p className="mr-2 text-lg font-semibold md:text-xl">Genres:</p>
+                                <div className="flex flex-wrap gap-2">
                                     {
                                         movie_details?.genres.map(genre => (
                                             <span key={genre.id} className="border-2 border-white px-1.5 py-0.5 rounded-lg uppercase">{genre.name}</span>
@@ -83,28 +84,28 @@ export const MovieDetails = () => {
             </div>
             {
                 !isLoading &&
-                <div className="flex flex-col md:grid md:grid-cols-3 gap-4 px-4 md:px-20 py-10 md:py-20">
-                    <div className="col-span-2 flex flex-col px-6 py-4 gap-4 bg-slate-800 dark:bg-zinc-800 rounded-lg">
-                        <p className="text-xl text-neutral-400">Overview</p>
-                        <p className="text-white">{movie_details?.overview}</p>
-                    </div>
-                    <div className="col-span-1 flex flex-col px-6 py-4 gap-2 bg-slate-800 dark:bg-zinc-800 rounded-lg">
-                        <p className="text-xl text-neutral-400">Details</p>
-                        <div>
-                            <p className="font-semibold text-lg">Status: <span className="font-normal">{movie_details?.status}</span></p>
-                            <p className="font-semibold text-lg">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}h</span></p>
-                            <p className="font-semibold text-lg">Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
-                            <p className="font-semibold text-lg">Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
-                            <p className="font-semibold text-lg">Votes: <span className="font-normal">{movie_details?.vote_count}</span></p>
+                <div className="space-y-12">
+                    <div className="flex flex-col gap-4 px-4 py-10 md:grid md:grid-cols-3 md:px-20 md:py-20">
+                        <div className="flex flex-col col-span-2 gap-4 px-6 py-4 rounded-lg bg-slate-800 dark:bg-zinc-800">
+                            <p className="text-xl text-neutral-400">Overview</p>
+                            <p className="text-white">{movie_details?.overview}</p>
+                        </div>
+                        <div className="flex flex-col col-span-1 gap-2 px-6 py-4 rounded-lg bg-slate-800 dark:bg-zinc-800">
+                            <p className="text-xl text-neutral-400">Details</p>
+                            <div>
+                                <p className="text-lg font-semibold">Status: <span className="font-normal">{movie_details?.status}</span></p>
+                                <p className="text-lg font-semibold">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}h</span></p>
+                                <p className="text-lg font-semibold">Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
+                                <p className="text-lg font-semibold">Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
+                                <p className="text-lg font-semibold">Votes: <span className="font-normal">{movie_details?.vote_count}</span></p>
+                            </div>
                         </div>
                     </div>
+                    <ReviewSlider reviews={movie_details?.reviews.results ?? []} />
+                    <CastPosterSlider cast={movie_details?.credits.cast ?? []} />
+                    <CrewPosterSlider crew={movie_details?.credits.crew ?? []} />
+                    <MoviesPosterSlider title="Similares movies" movies={movie_details?.similar.results} />
                 </div>
-            }
-            {
-                !isLoading &&
-                    <div>
-                        <MoviesPosterSlideSection title="Similares movies" movies={movie_details?.similar.results} />
-                    </div>
             }
         </div>
     );
