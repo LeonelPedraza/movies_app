@@ -8,23 +8,19 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route index path="/" element={
-          <Template>
+      <Template>
+        <Routes>
+          <Route index path="/" element={
             <Home />
-          </Template>
-        } />
-        <Route index path="/movies" element={
-          <Template>
+          } />
+          <Route index path="/movies" element={
             <Movies />
-          </Template>
-        } />
-        <Route index path="/movie/:original_title" element={
-          <Template>
+          } />
+          <Route index path="/movie/:original_title" element={
             <MovieDetails />
-          </Template>
-        } />
-      </Routes>
+          } />
+        </Routes>
+      </Template>
     </Router>
   )
 }

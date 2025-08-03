@@ -157,7 +157,7 @@ export interface VideosResult {
   key: string;
   site: Site;
   size: number;
-  type: Type;
+  type: VideoType;
   official: boolean;
   published_at: Date;
   id: string;
@@ -167,7 +167,7 @@ export enum Site {
   YouTube = "YouTube",
 }
 
-export enum Type {
+export enum VideoType {
   BehindTheScenes = "Behind the Scenes",
   Clip = "Clip",
   Featurette = "Featurette",

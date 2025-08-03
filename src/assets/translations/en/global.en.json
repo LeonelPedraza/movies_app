@@ -12,7 +12,7 @@
         "eng": "English",
         "es": "Spanish"
     },
-    "home_title": "Discover your favorite {{type}}",
+    "home_title": "Discover your favorite movie",
     "home_subtitle": "Endless choices await!",
     "movies": {
         "populares": "populares $t(general.movies)",

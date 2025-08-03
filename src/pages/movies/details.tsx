@@ -7,6 +7,8 @@ import { MoviesPosterSlider } from "../../components/sliders/movies_poster_slide
 import { CastPosterSlider } from "../../components/sliders/cast_slider";
 import { CrewPosterSlider } from "../../components/sliders/crew_slider";
 import { ReviewSlider } from "../../components/sliders/review_slider";
+import '@justinribeiro/lite-youtube';
+import { VideoType } from "../../hooks/types/types";
 
 export const MovieDetails = () => {
 
@@ -14,12 +16,13 @@ export const MovieDetails = () => {
 
     const { movie_details, isLoading } = useMovieDetails({ id: location.state.id })
     const { movie_images, isLoading: images_loading } = useMoviewImages({ id: location.state.id })
+    const trailerVideo = movie_details?.videos.results.find(item => item.type === VideoType.Trailer)
 
     const convertRuntime = (runtimeMinutes: number | undefined) => {
         if (runtimeMinutes != undefined) {
             const hours = Math.floor(runtimeMinutes / 60); // Obtener las horas
             const minutes = runtimeMinutes % 60; // Obtener los minutos restantes
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            return `${hours.toString()}h ${minutes.toString()}m`;
         }
     }
 
@@ -37,12 +40,12 @@ export const MovieDetails = () => {
                         delay={6000}
                     />
             }
-            <div className="top-0 z-40 flex w-screen px-4 py-4 md:absolute md:h-screen md:px-20 md:py-28">
+            <div className="absolute top-0 z-40 flex w-screen h-screen px-4 py-4 lg:px-20 md:py-28">
                 <div className="flex flex-col items-center justify-start gap-2 md:flex-row md:gap-8 md:mt-auto">
-                    <MoviePosterItem movie={movie_details} className="hidden w-56 md:flex h-80" show_rating={false} />
+                    <MoviePosterItem movie={movie_details} className="hidden w-56 lg:flex h-80" show_rating={false} />
                     {
                         !isLoading &&
-                        <div className="flex flex-col h-full gap-2 text-white md:gap-4">
+                        <div className="flex flex-col justify-end h-full gap-2 mb-8 text-white md:mb-0 md:gap-4">
                             <div className="px-2 py-1 border-2 border-white rounded-lg max-w-min md:px-4 md:py-2">
                                 <p className="text-lg font-bold md:text-2xl">{movie_details?.vote_average.toFixed(1)}</p>
                             </div>
@@ -84,22 +87,27 @@ export const MovieDetails = () => {
             </div>
             {
                 !isLoading &&
-                <div className="space-y-12">
-                    <div className="flex flex-col gap-4 px-4 py-10 md:grid md:grid-cols-3 md:px-20 md:py-20">
-                        <div className="flex flex-col col-span-2 gap-4 px-6 py-4 rounded-lg bg-slate-800 dark:bg-zinc-800">
+                <div className="flex flex-col gap-y-20">
+                    <div className="flex flex-col gap-4 px-4 mt-20 md:grid md:grid-cols-3 lg:px-20">
+                        <div className="flex flex-col col-span-2 gap-4 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
                             <p className="text-xl text-neutral-400">Overview</p>
                             <p className="text-white">{movie_details?.overview}</p>
                         </div>
-                        <div className="flex flex-col col-span-1 gap-2 px-6 py-4 rounded-lg bg-slate-800 dark:bg-zinc-800">
-                            <p className="text-xl text-neutral-400">Details</p>
-                            <div>
-                                <p className="text-lg font-semibold">Status: <span className="font-normal">{movie_details?.status}</span></p>
-                                <p className="text-lg font-semibold">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}h</span></p>
-                                <p className="text-lg font-semibold">Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
-                                <p className="text-lg font-semibold">Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
-                                <p className="text-lg font-semibold">Votes: <span className="font-normal">{movie_details?.vote_count}</span></p>
-                            </div>
+                        <div className="flex flex-col col-span-1 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <p className="text-lg font-semibold">Status: <span className="font-normal">{movie_details?.status}</span></p>
+                            <p className="text-lg font-semibold">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}</span></p>
+                            <p className="text-lg font-semibold">Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
+                            <p className="text-lg font-semibold">Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
+                            <p className="text-lg font-semibold">Budget: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.budget ?? 0)}</span></p>
+                            <p className="text-lg font-semibold">Revenue: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.revenue ?? 0)}</span></p>
                         </div>
+                    </div>
+                    <div className="px-4 lg:px-20">
+                        <lite-youtube 
+                            videotitle={trailerVideo?.name}
+                            videoid={trailerVideo?.key} 
+                            class="w-full h-auto mx-auto lg:w-3/4" >
+                        </lite-youtube>
                     </div>
                     <ReviewSlider reviews={movie_details?.reviews.results ?? []} />
                     <CastPosterSlider cast={movie_details?.credits.cast ?? []} />

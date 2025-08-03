@@ -26,13 +26,13 @@ export const ReviewSlider: FC<IProps> = ({ reviews }) => {
     return (
         <div className="flex flex-col">
             <div className='flex justify-between px-4 md:px-20'>
-                <h1 className="text-2xl font-semibold first-letter:uppercase">Reviews</h1>
+                <h2 className="text-2xl font-semibold first-letter:uppercase">Reviews</h2>
             </div>
             <div className='relative'>
                 <Swiper
                     ref={slideRef}
                     modules={[Navigation]}
-                    slidesPerView={3}
+                    slidesPerView={1}
                     spaceBetween={0}
                     navigation={false}
                     lazyPreloadPrevNext={3}
@@ -58,7 +58,7 @@ export const ReviewSlider: FC<IProps> = ({ reviews }) => {
                             spaceBetween: 0,
                         }
                     }}
-                    className='px-10 md:px-20 py-4 md:py-8'
+                    className='px-10 py-4 md:px-20 md:py-8'
                 >
                     {
                         reviews.map(item => (
@@ -68,7 +68,7 @@ export const ReviewSlider: FC<IProps> = ({ reviews }) => {
                         ))
                     }
                 </Swiper>
-                <div className='absolute flex justify-between w-full h-full top-0 left-0'>
+                <div className='absolute top-0 left-0 flex justify-between w-full h-full'>
                     <div
                         onClick={handlePrev}
                         className='relative flex items-center justify-center px-1.5 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
@@ -76,7 +76,7 @@ export const ReviewSlider: FC<IProps> = ({ reviews }) => {
                     </div>
                     <div
                         onClick={handleNext}
-                        className='relative flex items-center justify-center px-1 md:px-4 h-full z-40 backdrop-blur-sm cursor-pointer'>
+                        className='relative z-40 flex items-center justify-center h-full px-1 cursor-pointer md:px-4 backdrop-blur-sm'>
                         <MdArrowForwardIos className="text-lg md:text-2xl " />
                     </div>
                 </div>
