@@ -36,7 +36,7 @@ export const FlagSelect = () => {
     }, [lng])
 
     return (
-        <div className="relative">
+        <div className="relative w-max">
             <button onClick={() => setOpenDropdown(!openDropdown)} type="button" className="relative p-2 text-center text-2xl font-semibold text-gray-600 rounded-full">
                 <img src={selectedItem?.flag} alt="" className="h-7 w-7" />
             </button>

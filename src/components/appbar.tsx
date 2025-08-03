@@ -58,23 +58,25 @@ const AppBar: FC = () => {
     }, [element.classList])
 
     return (
-        <div className={`fixed w-full top-0 flex justify-between items-center px-4 md:px-16 py-2 md:py-4 z-50 ${scrolling ? 'backdrop-blur-md' : ''}`}>
+        <div className={`fixed w-full top-0 flex justify-between gap-16 items-center px-4 md:px-16 py-2 md:py-4 z-50 ${scrolling ? 'backdrop-blur-md' : ''}`}>
             <div className="flex items-center gap-8">
                 <Link to={'/'} className="text-2xl font-bold md:text-3xl">LOGO</Link>
                 <div className="flex gap-6 text-xl font-bold">
                     <Link to={'/movies'} className="first-letter:uppercase">{translations('general.movies')}</Link>
                 </div>
             </div>
+            <div className="w-full xl:w-1/2">
+                <SearchForm/>
+            </div>
             <div className="flex items-center md:gap-2">
                 <div className="flex items-center md:gap-2">
-                    <SearchForm/>
                     <FlagSelect/>
                     <button onClick={changeTheme} className="p-2 text-2xl font-semibold text-center rounded-full">
                         {darkTheme ? <MdOutlineLightMode className="dark:text-slate-100"/> : <IoMoon />}
                     </button>
                 </div>
                 {/* Profile */}
-                <div className="relative ml-3" id="user-menu-section">
+                <div className="relative ml-3 w-max" id="user-menu-section">
                     <div>
                         <button onClick={() => setOpenProfileDropdown(!openProfileDropdown)} type="button" className="relative flex text-sm bg-gray-800 rounded-full" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span className="absolute -inset-1.5"></span>
