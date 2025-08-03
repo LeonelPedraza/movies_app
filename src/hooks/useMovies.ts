@@ -1,10 +1,11 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
-import { getMovieDetails, getMovieImages, getPopularesMovies, getTopRated, getUpcoming } from '../services/movies/movies'
+import { getMovieDetails, getMovieImages, getPopularesMovies, getTopRated, getUpcoming, searchMovies } from '../services/movies/movies'
 
 export const MOVIES_QUERY_KEYS = {
     POPULARES: 'POPULARES',
     TOP_RATED: 'TOP_RATED',
     UPCOMING: 'UPCOMING',
+    SEARCH: 'SEARCH',
     DETAILS: 'DETAILS',
     IMAGES: 'IMAGES'
 }
@@ -58,6 +59,23 @@ export const useUpcomingMovies = () => {
         isError,
         error,
         data: data?.pages.flatMap(item => item.movies)
+    }
+}
+
+export const useSearchMovies = ({query}: {query: string}) => {
+    const { isLoading, isError, error, data, fetchNextPage } = useInfiniteQuery({
+        queryKey: [MOVIES_QUERY_KEYS.SEARCH, query],
+        queryFn: async () => await searchMovies({query}),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+        staleTime: Infinity
+    })
+    return {
+        isLoading,
+        isError,
+        error,
+        data,
+        fetchNextPage
     }
 }
 
