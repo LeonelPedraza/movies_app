@@ -8,6 +8,9 @@ const API_URL = import.meta.env.VITE_API_URL
 interface MoviesResponse {
     movies: Movie[], 
     nextCursor: number
+    total_pages?: number
+    total_results?: number
+    page?: number
 }
 
 const headers = {
@@ -52,6 +55,23 @@ export const getUpcoming = ({ pageParam = 1 }: { pageParam?: number }): Promise<
             nextCursor
         }
     })
+}
+
+export const searchMovies = ({ query, pageParam = 1 }: { query: string, pageParam?: number }): Promise<MoviesResponse> => {
+    console.log(system_language)
+    return axios.get(`${API_URL}/search/movie?query=${query}&language=${system_language}&page=${pageParam}`, { headers })
+        .then((res) => {
+            const currentPage = res.data.page
+            const nextCursor = currentPage == res.data.total_pages ? undefined : currentPage + 1
+
+            return {
+                movies: res.data.results,
+                total_pages: res.data.total_pages,
+                total_results: res.data.total_results,
+                page: res.data.page,
+                nextCursor
+            }
+        })
 }
 
 export const getMovieDetails = ({ id }: { id: number }): Promise<Movie> => {
