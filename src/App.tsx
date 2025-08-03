@@ -3,6 +3,7 @@ import Home from "./pages/home"
 import { Template } from "./components/template"
 import { Movies } from "./pages/movies/movies"
 import { MovieDetails } from "./pages/movies/details"
+import { SearchMovies } from "./pages/movies/search"
 
 function App() {
 
@@ -10,15 +11,10 @@ function App() {
     <Router>
       <Template>
         <Routes>
-          <Route index path="/" element={
-            <Home />
-          } />
-          <Route index path="/movies" element={
-            <Movies />
-          } />
-          <Route index path="/movie/:original_title" element={
-            <MovieDetails />
-          } />
+          <Route index path="/" element={<Home />} />
+          <Route path="/search" element={<SearchMovies />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:original_title" element={<MovieDetails />} />          
         </Routes>
       </Template>
     </Router>
