@@ -10,6 +10,8 @@ import { ReviewSlider } from "../../components/sliders/review_slider";
 import '@justinribeiro/lite-youtube';
 import { VideoType } from "../../hooks/types/types";
 
+const IMAGE_URL = import.meta.env.VITE_IMAGE_URL
+
 export const MovieDetails = () => {
 
     const location = useLocation()
@@ -88,18 +90,46 @@ export const MovieDetails = () => {
             {
                 !isLoading &&
                 <div className="flex flex-col gap-y-20">
-                    <div className="flex flex-col gap-4 px-4 mt-20 md:grid md:grid-cols-3 lg:px-20">
-                        <div className="flex flex-col col-span-2 gap-4 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
-                            <p className="text-xl text-neutral-400">Overview</p>
+                    <div className="flex flex-col gap-4 px-4 mt-20 md:grid md:grid-cols-4 lg:px-20">
+                        <div className="flex flex-col col-span-4 gap-4 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <h3 className="text-xl text-neutral-300">Overview</h3>
                             <p className="text-white">{movie_details?.overview}</p>
                         </div>
-                        <div className="flex flex-col col-span-1 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
-                            <p className="text-lg font-semibold">Status: <span className="font-normal">{movie_details?.status}</span></p>
-                            <p className="text-lg font-semibold">Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}</span></p>
-                            <p className="text-lg font-semibold">Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
-                            <p className="text-lg font-semibold">Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
-                            <p className="text-lg font-semibold">Budget: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.budget ?? 0)}</span></p>
-                            <p className="text-lg font-semibold">Revenue: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.revenue ?? 0)}</span></p>
+                        <div className="flex flex-col px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <h3 className="mb-4 text-xl text-neutral-300">Detalles</h3>
+                            <p>Status: <span className="font-normal">{movie_details?.status}</span></p>
+                            <p>Duration: <span className="font-normal">{convertRuntime(movie_details?.runtime)}</span></p>
+                            <p>Country: <span className="font-normal">{movie_details?.origin_country.join(', ')}</span></p>
+                            <p>Original language: <span className="font-normal">{movie_details?.original_language}</span></p>
+                        </div>
+                        <div className="flex flex-col px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <h3 className="mb-4 text-xl text-neutral-300">Taquilla</h3>
+                            <p>Budget: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.budget ?? 0)}</span></p>
+                            <p>Revenue: <span className="font-normal">{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(movie_details?.revenue ?? 0)}</span></p>
+                        </div>
+                        <div className="flex flex-col gap-4 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <h3 className="text-xl text-neutral-300">Production companies</h3>
+                            <ul className="list-disc list-inside">
+                                {
+                                    movie_details?.production_companies.map(item => (
+                                        <li key={item.id}>
+                                            <span>{item.name}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="flex flex-col gap-4 px-6 py-4 rounded-lg backdrop-blur-sm bg-white/5">
+                            <h3 className="text-xl text-neutral-300">Production countries</h3>
+                            <ul className="list-disc list-inside">
+                                {
+                                    movie_details?.production_countries.map(item => (
+                                        <li key={item.iso_3166_1}>
+                                            <span>{item.name}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                     </div>
                     <div className="px-4 lg:px-20">
@@ -109,10 +139,13 @@ export const MovieDetails = () => {
                             class="w-full h-auto mx-auto lg:w-3/4" >
                         </lite-youtube>
                     </div>
-                    <ReviewSlider reviews={movie_details?.reviews.results ?? []} />
-                    <CastPosterSlider cast={movie_details?.credits.cast ?? []} />
-                    <CrewPosterSlider crew={movie_details?.credits.crew ?? []} />
-                    <MoviesPosterSlider title="Similares movies" movies={movie_details?.similar.results} />
+                    <div className="flex flex-col gap-4">
+                        <ReviewSlider reviews={movie_details?.reviews.results ?? []} />
+                        <CastPosterSlider cast={movie_details?.credits.cast ?? []} />
+                        <CrewPosterSlider crew={movie_details?.credits.crew ?? []} />
+                        <MoviesPosterSlider title="Similares movies" movies={movie_details?.similar.results} />
+                        
+                    </div>
                 </div>
             }
         </div>

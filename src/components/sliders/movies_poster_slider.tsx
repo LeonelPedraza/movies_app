@@ -40,7 +40,7 @@ export const MoviesPosterSlider: FC<IProps> = ({ title, movies }) => {
                     ref={slideRef}
                     modules={[Navigation]}
                     slidesPerView={1}
-                    spaceBetween={0}
+                    spaceBetween={100}
                     navigation={false}
                     lazyPreloadPrevNext={3}
                     breakpoints={{
