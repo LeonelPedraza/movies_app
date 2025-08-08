@@ -9,7 +9,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -18,43 +18,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
+      # 1. Instalar pnpm antes que todo
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9 # usa la versión que tengas localmente
+          version: 9
 
-      - name: Install dependencies
+      # 2. Configurar Node con caché de pnpm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      # 3. Instalar dependencias usando el lockfile
+      - name: Install deps
         run: pnpm install --frozen-lockfile
 
+      # 4. Build con variables de entorno de GH
       - name: Build
-        run: pnpm run build
         env:
+          NODE_ENV: production
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
           VITE_API_URL: ${{ vars.VITE_API_URL }}
           VITE_IMAGE_URL: ${{ vars.VITE_IMAGE_URL }}
           VITE_VIDEO_URL: ${{ vars.VITE_VIDEO_URL }}
+        run: pnpm run build
 
-      - name: Add SPA fallback (404.html)
+      # 5. Fallback SPA para evitar 404
+      - name: SPA fallback (404.html)
         run: |
           if [ -d dist ]; then cp dist/index.html dist/404.html; fi
           if [ -d build ]; then cp build/index.html build/404.html; fi
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v5
 
+      # 6. Detectar carpeta final
       - name: Resolve artifact path
         id: path
         run: |
           if [ -d dist ]; then echo "value=dist" >> $GITHUB_OUTPUT; else echo "value=build" >> $GITHUB_OUTPUT; fi
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # 7. Subir artefacto
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.path.outputs.value }}
 
