@@ -10,8 +10,6 @@ import { ReviewSlider } from "../../components/sliders/review_slider";
 import '@justinribeiro/lite-youtube';
 import { VideoType } from "../../hooks/types/types";
 
-const IMAGE_URL = import.meta.env.VITE_IMAGE_URL
-
 export const MovieDetails = () => {
 
     const location = useLocation()
@@ -132,19 +130,21 @@ export const MovieDetails = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="px-4 lg:px-20">
-                        <lite-youtube 
-                            videotitle={trailerVideo?.name}
-                            videoid={trailerVideo?.key} 
-                            class="w-full h-auto mx-auto lg:w-3/4" >
-                        </lite-youtube>
-                    </div>
+                    {
+                        trailerVideo &&
+                        <div className="px-4 lg:px-20">
+                            <lite-youtube 
+                                videoid={trailerVideo.key} 
+                                videotitle={trailerVideo.name ?? 'Trailer'}
+                                className="w-full h-auto mx-auto lg:w-3/4"
+                            />
+                        </div>
+                    }
                     <div className="flex flex-col gap-4">
                         <ReviewSlider reviews={movie_details?.reviews.results ?? []} />
                         <CastPosterSlider cast={movie_details?.credits.cast ?? []} />
                         <CrewPosterSlider crew={movie_details?.credits.crew ?? []} />
                         <MoviesPosterSlider title="Similares movies" movies={movie_details?.similar.results} />
-                        
                     </div>
                 </div>
             }
